@@ -7,19 +7,20 @@ using UnityEngine.XR;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public LayerMask ground;
-    Animator animation;
+    Animator animation_player;
     public Rigidbody2D player;
-    float speed = 5f;
-    float jump = 15f;
+    float speed = 6f;
+    float jump = 17f;
+    float direction;
+    bool disable_inputs = false;
     public SpriteRenderer sprite;
     public BoxCollider2D player_collider;
 
     // Start is called before the first frame update
     void Start()
     {
-        animation = GetComponent<Animator>();
+        animation_player = GetComponent<Animator>();
         player = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         player_collider = GetComponent<BoxCollider2D>();
@@ -28,32 +29,38 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //Debug.DrawRay(transform.position, Vector2.down*2, Color.green);
-        float direction = Input.GetAxisRaw("Horizontal");
-        player.velocity = new Vector2(speed * direction, player.velocity.y);
-
-        if (direction > 0f) {
-            sprite.flipX = false;
-            animation.SetBool("running", true);
-        } else if (direction < 0f) {
-            sprite.flipX = true;
-            animation.SetBool("running", true);
-        } else {
-            animation.SetBool("running", false);
-        }
-
-        if (Input.GetKeyDown("space") && IsGrounded())
-            player.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
-
-        //animation.SetInteger("velocity_x", (int)player.velocity.x);
-        animation.SetInteger("velocity_y", (int)player.velocity.y);
+        // Debug.DrawRay(transform.position, Vector2.down*2, Color.green);
+        IsGrounded();
+        // Horizontal movement
+        if (!disable_inputs) {
+            direction = Input.GetAxisRaw("Horizontal");
+            PlayerMoving();
+            //Jumping
+            if (Input.GetKeyDown("space") && IsGrounded())
+                player.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+            player.velocity = new Vector2(speed * direction, player.velocity.y);
+        } 
+        animation_player.SetInteger("velocity_y", (int)player.velocity.y);
     }
 
-    bool IsGrounded()
-    {
+    void PlayerMoving() {
+        // player moves hirizontally and sprite flips
+        if (direction > 0f) {
+            sprite.flipX = false;
+            animation_player.SetBool("running", true);
+        } else if (direction < 0f) {
+            sprite.flipX = true;
+            animation_player.SetBool("running", true);
+        } else {
+            animation_player.SetBool("running", false);
+        }
+    }
+
+    bool IsGrounded() {
+        // player is touching the ground, disable the jump
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, ground);
         if (hit.collider != null) {
+            animation_player.SetBool("is_hit", false);
             return true;
         }
         return false;
@@ -61,12 +68,22 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
+        // player collides with enemy and gets hurt
         if (collision.gameObject.tag == "Enemies") {
-            Vector2 kb = new Vector2(10f, 5f);
-        
-            player.AddForce(kb, ForceMode2D.Impulse);
-            animation.SetTrigger("is_hit");
-            
+            disable_inputs = true;
+            StartCoroutine(InputDisabler());
+            Vector3 knockback_direction = (player.transform.position - collision.gameObject.transform.position);
+            if (knockback_direction.x >= 0) {
+                player.AddForce(new Vector2(1f, 0.7f) * 10f, ForceMode2D.Impulse);
+            } else if (knockback_direction.x < 0) {
+                player.AddForce(new Vector2(-1f, 0.7f) * 10f, ForceMode2D.Impulse);
+            }
+            animation_player.SetBool("is_hit", true);
         }
+    }
+
+    IEnumerator InputDisabler() {
+        yield return new WaitForSeconds(0.7f); //wait 
+        disable_inputs = false;
     }
 }
