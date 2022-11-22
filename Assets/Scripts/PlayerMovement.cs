@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ground;
     Animator animation_player;
     public Rigidbody2D player;
-    float speed = 6f;
+    float speed = 7f;
     float jump = 17f;
     float direction;
     bool disable_inputs = false;
@@ -60,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
         // player is touching the ground, disable the jump
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, ground);
         if (hit.collider != null) {
-            animation_player.SetBool("is_hit", false);
             return true;
         }
         return false;
@@ -71,18 +70,24 @@ public class PlayerMovement : MonoBehaviour
         // player collides with enemy and gets hurt
         if (collision.gameObject.tag == "Enemies") {
             disable_inputs = true;
+            player.velocity = new Vector2(0f, 0f);
             StartCoroutine(InputDisabler());
             Vector3 knockback_direction = (player.transform.position - collision.gameObject.transform.position);
             if (knockback_direction.x >= 0) {
+                // player located on rght of enemy
+                sprite.flipX = true;
                 player.AddForce(new Vector2(1f, 0.7f) * 10f, ForceMode2D.Impulse);
             } else if (knockback_direction.x < 0) {
+                // player located on left of enemy
+
                 player.AddForce(new Vector2(-1f, 0.7f) * 10f, ForceMode2D.Impulse);
             }
-            animation_player.SetBool("is_hit", true);
+            animation_player.SetTrigger("is_hit");
         }
     }
 
     IEnumerator InputDisabler() {
+        // cant press anything
         yield return new WaitForSeconds(0.7f); //wait 
         disable_inputs = false;
     }
