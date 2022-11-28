@@ -18,7 +18,7 @@ public class MenuController : MonoBehaviour {
     private int limitLangIteration;
 
     private static string selectedScene;
-    private string[] sceneArrays = { "GameScene", "ControlsScene", "CreditsScene", "ExitScene"};
+    private string[] sceneArrays = { "GameSceneLevOne", "ControlsScene", "CreditsScene", "ExitScene"};
     private static int currentSceneIteration;
     private int limitSceneIteration;
 
