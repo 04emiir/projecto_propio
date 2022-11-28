@@ -4,13 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ControlsController : MonoBehaviour
+public class CreditsController : MonoBehaviour
 {
-    private string[] engText = { "SELECT / ACTION", "GO BACK / CANCEL", "MENU\nCONTROL", "PLAYER\nCONTROL" };
-    private string[] espText = { "SELECCION / ACCION", "ATRAS / CANCELAR", "CONTROL MENU", "CONTROL JUGADOR" };
+    private string[] engText = { "DIRECTION AND\n HISTORY BY", "PROGRAMMING BY", "ART AND ASSETS BY" };
+    private string[] espText = { "DIRECCION E\n HISTORIA POR", "PROGRAMADO POR", "ARTE Y RECURSOS POR" };
     public TextMeshProUGUI[] textControls;
     public AudioSource changeLang;
-
     Dictionary<string, string[]> fullLanguages = new Dictionary<string, string[]>();
     // Start is called before the first frame update
     void Start()
@@ -22,15 +21,15 @@ public class ControlsController : MonoBehaviour
         foreach (var singleText in textControls) {
             singleText.text = fullLanguages[MenuController.selectedLang][cont++];
         }
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.K)) {
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.K)) {
             changeLang.Play();
             StartCoroutine("BackToMenu");
- 
+
         }
     }
 

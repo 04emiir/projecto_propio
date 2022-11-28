@@ -13,13 +13,13 @@ public class MenuController : MonoBehaviour {
     public TextMeshProUGUI[] buttonsMenu;
 
     public string[] languagueArrays;
-    public static string selectedLang;
-    private int currentLangIteration = 0;
+    [HideInInspector] public static string selectedLang;
+    private static int currentLangIteration;
     private int limitLangIteration;
 
-    protected string selectedScene;
+    private static string selectedScene;
     private string[] sceneArrays = { "GameScene", "ControlsScene", "CreditsScene", "ExitScene"};
-    private int currentSceneIteration = 0;
+    private static int currentSceneIteration;
     private int limitSceneIteration;
 
     private string[] engButtons = { "NEW GAME", "CONTROLS", "CREDITS", "EXIT" };
@@ -55,9 +55,15 @@ public class MenuController : MonoBehaviour {
 
         selectedLang = languagueArrays[currentLangIteration];
         limitLangIteration = languagueArrays.Length - 1;
+        foreach (var flag in flagsImages) {
+            flag.color = new Color(0.298f, 0.298f, 0.298f, 1);
+        }
+        flagsImages[currentLangIteration].color = new Color(1, 1, 1, 1);
 
         selectedScene = sceneArrays[currentSceneIteration];
         limitSceneIteration = sceneArrays.Length - 1;
+        hudArrowIcon.transform.SetParent(buttonsMenu[currentSceneIteration].transform, false);
+        selectedScene = sceneArrays[currentSceneIteration];
 
         var cont = 0;
         foreach (var singleButton in buttonsMenu) {
