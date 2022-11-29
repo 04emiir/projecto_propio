@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -85,11 +86,19 @@ public class PlayerMovement : MonoBehaviour
             }
             animation_player.SetTrigger("is_hit");
         }
+
     }
 
     void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.tag == "Module2" && Input.GetKey(KeyCode.J))
-            Debug.Log(collision);
+            SceneManager.LoadScene("GameSceneLevTwo");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.tag == "DEATH") {
+            Debug.Log("MUERTO");
+            player.transform.localPosition = GameController.currentSpawnPoint;
+        }
     }
 
     IEnumerator InputDisabler() {

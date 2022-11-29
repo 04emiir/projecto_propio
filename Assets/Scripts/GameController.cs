@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour{
     private string[] espText = { "SELECCION / ACCION", "ATRAS / CANCELAR", "CONTROL MENU", "CONTROL JUGADOR", "REANUDAR", "SALIR" };
     public TextMeshProUGUI[] textControls;
 
+    [HideInInspector] public static Vector3 currentSpawnPoint = new Vector3(27f, 26f, 0f);
+
     Dictionary<string, string[]> fullLanguages = new Dictionary<string, string[]>();
 
     // Start is called before the first frame update

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemies
   - Module2
+  - DEATH
+  - ReviveBot
   layers:
   - Default
   - TransparentFX
