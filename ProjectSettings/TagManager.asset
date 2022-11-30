@@ -8,6 +8,10 @@ TagManager:
   - Module2
   - DEATH
   - ReviveBot
+  - PowerUp
+  - ResumeMenu
+  - QuitMenu
+  - Module3
   layers:
   - Default
   - TransparentFX

@@ -99,11 +99,22 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("MUERTO");
             player.transform.localPosition = GameController.currentSpawnPoint;
         }
+
+        if (collision.gameObject.tag == "PowerUp") {
+            speed = 11f;
+            StartCoroutine("MoreSpeed");
+        }
     }
 
     IEnumerator InputDisabler() {
         // cant press anything
         yield return new WaitForSeconds(0.7f); //wait 
         disable_inputs = false;
+    }
+
+    IEnumerator MoreSpeed() {
+        // cant press anything
+        yield return new WaitForSeconds(4f); //wait 
+        speed = 7f;
     }
 }
