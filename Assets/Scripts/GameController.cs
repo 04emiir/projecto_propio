@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour{
     private string[] espText = { "SELECCION / ACCION", "ATRAS / CANCELAR", "CONTROL MENU", "CONTROL JUGADOR", "REANUDAR", "SALIR" };
     public TextMeshProUGUI[] textControls;
 
-    [HideInInspector] public static Vector3 currentSpawnPoint = new Vector3(121f, 24.87f, 0f);
+    [HideInInspector] public static Vector3 currentSpawnPoint = new Vector3(121f, 29.09f, 0f);
 
     Dictionary<string, string[]> fullLanguages = new Dictionary<string, string[]>();
 
@@ -35,12 +35,12 @@ public class GameController : MonoBehaviour{
         if (Input.GetKeyDown(KeyCode.Escape)) 
             PauseGame();
 
-        if (Input.GetKeyDown(KeyCode.W)) {
+        if (Input.GetKeyDown(KeyCode.W) && canvas.activeSelf) {
             selectedPause = "resume";
             hudArrowIcon.transform.SetParent(resumeParent.transform, false);
         }
 
-        if (Input.GetKeyDown(KeyCode.S)) {
+        if (Input.GetKeyDown(KeyCode.S) && canvas.activeSelf ) {
             selectedPause = "quit";
             hudArrowIcon.transform.SetParent(quitParent.transform, false);
         }

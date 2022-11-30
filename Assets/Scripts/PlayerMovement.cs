@@ -92,6 +92,13 @@ public class PlayerMovement : MonoBehaviour
     void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.tag == "Module2" && Input.GetKey(KeyCode.J))
             SceneManager.LoadScene("GameSceneLevTwo");
+        if (collision.gameObject.tag == "Module3" && Input.GetKey(KeyCode.J)) {
+            GameController.currentSpawnPoint = new Vector3(121f, 29.93f, 0f);
+            SceneManager.LoadScene("GameSceneLevThree");
+        }
+        if (collision.gameObject.tag == "EndGameModule" && Input.GetKey(KeyCode.J)) {
+            SceneManager.LoadScene("CreditsScene");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

@@ -132,7 +132,8 @@ public class MenuController : MonoBehaviour {
     }
 
     private void HUDArrowMovement() {
-        hudArrowIcon.transform.localPosition = new Vector3(Mathf.PingPong(Time.time * 25, initialHUDArrowPos.x - limitHUDArrowPos.x) + limitHUDArrowPos.x, hudArrowIcon.transform.localPosition.y, hudArrowIcon.transform.localPosition.z);
+        hudArrowIcon.transform.localPosition = new Vector3(Mathf.PingPong(Time.time * 25, initialHUDArrowPos.x - limitHUDArrowPos.x) + limitHUDArrowPos.x, 
+            hudArrowIcon.transform.localPosition.y, hudArrowIcon.transform.localPosition.z);
     }
 
     private void ChangeUpMenuScene() {

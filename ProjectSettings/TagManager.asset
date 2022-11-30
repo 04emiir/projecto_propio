@@ -12,6 +12,7 @@ TagManager:
   - ResumeMenu
   - QuitMenu
   - Module3
+  - EndGameModule
   layers:
   - Default
   - TransparentFX
