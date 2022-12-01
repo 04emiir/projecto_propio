@@ -103,7 +103,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "DEATH") {
-            Debug.Log("MUERTO");
             player.transform.localPosition = GameController.currentSpawnPoint;
         }
 
@@ -115,8 +114,11 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator InputDisabler() {
         // cant press anything
-        yield return new WaitForSeconds(0.7f); //wait 
+        while(!IsGrounded())
+            yield return null; 
         disable_inputs = false;
+        animation_player.SetTrigger("is_recovered");
+
     }
 
     IEnumerator MoreSpeed() {

@@ -645,6 +645,7 @@ GameObject:
   - component: {fileID: 224587219}
   - component: {fileID: 224587218}
   - component: {fileID: 224587221}
+  - component: {fileID: 224587222}
   m_Layer: 8
   m_Name: player-idle-1
   m_TagString: Untagged
@@ -787,6 +788,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &224587222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224587216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2ae574237944747b1833ebb4f61c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  espText: "MOVERSE:\nTECLA A \xF3 D."
+  engText: 'MOVEMENT:
+
+    A, D KEYS.'
+  trainBotText: {fileID: 735807096}
 --- !u!1 &380774955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,7 +1423,7 @@ GameObject:
   - component: {fileID: 735807097}
   - component: {fileID: 735807096}
   m_Layer: 8
-  m_Name: text
+  m_Name: TrainBotTextOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1480,8 +1498,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
-  m_fontSizeBase: 7
+  m_fontSize: 6
+  m_fontSizeBase: 6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1579,7 +1597,7 @@ GameObject:
   - component: {fileID: 757779516}
   - component: {fileID: 757779515}
   m_Layer: 8
-  m_Name: text
+  m_Name: TrainBotTextThree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3497,7 +3515,7 @@ GameObject:
   - component: {fileID: 1354056668}
   - component: {fileID: 1354056667}
   m_Layer: 8
-  m_Name: text
+  m_Name: TrainBotTextTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3572,8 +3590,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
-  m_fontSizeBase: 7
+  m_fontSize: 6
+  m_fontSizeBase: 6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3994,6 +4012,7 @@ GameObject:
   - component: {fileID: 1398753178}
   - component: {fileID: 1398753177}
   - component: {fileID: 1398753176}
+  - component: {fileID: 1398753180}
   m_Layer: 8
   m_Name: player-idle-1
   m_TagString: Untagged
@@ -4136,6 +4155,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1398753180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398753174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2ae574237944747b1833ebb4f61c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  espText: "TOCA LA \nNAVE (J)."
+  engText: 'INTERACT WITH
+
+    SHIP (J).'
+  trainBotText: {fileID: 757779515}
 --- !u!1 &1418763975
 GameObject:
   m_ObjectHideFlags: 0
@@ -4714,7 +4750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
@@ -5180,6 +5216,7 @@ GameObject:
   - component: {fileID: 1697525687}
   - component: {fileID: 1697525686}
   - component: {fileID: 1697525685}
+  - component: {fileID: 1697525689}
   m_Layer: 8
   m_Name: player-idle-1
   m_TagString: Untagged
@@ -5322,6 +5359,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1697525689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697525683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2ae574237944747b1833ebb4f61c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  espText: 'ESC.
+
+    PARA PAUSAR.'
+  engText: 'ESC.
+
+    TO PAUSE.'
+  trainBotText: {fileID: 1354056667}
 --- !u!1 &1763407064
 GameObject:
   m_ObjectHideFlags: 0

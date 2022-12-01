@@ -27,6 +27,10 @@ public class GameController : MonoBehaviour{
         selectedPause = "resume";
         fullLanguages.Add("esp", espText);
         fullLanguages.Add("eng", engText);
+        var cont = 0;
+        foreach (var textControl in textControls) {
+            textControl.text = fullLanguages[MenuController.selectedLang][cont++];
+        }
     }
 
     // Update is called once per frame
