@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
     bool disable_inputs = false;
     public SpriteRenderer sprite;
     public BoxCollider2D player_collider;
-
+    public AudioSource jumpSound;
+    public AudioSource hitSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +39,10 @@ public class PlayerMovement : MonoBehaviour
             direction = Input.GetAxisRaw("Horizontal");
             PlayerMoving();
             //Jumping
-            if (Input.GetKeyDown("space") && IsGrounded())
+            if (Input.GetKeyDown("space") && IsGrounded()) {
+                jumpSound.Play();
                 player.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+            }
             player.velocity = new Vector2(speed * direction, player.velocity.y);
         } 
         animation_player.SetInteger("velocity_y", (int)player.velocity.y);
@@ -71,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         // player collides with enemy and gets hurt
         if (collision.gameObject.tag == "Enemies") {
+            hitSound.Play();
             disable_inputs = true;
             player.velocity = new Vector2(0f, 0f);
             StartCoroutine(InputDisabler());
@@ -103,10 +107,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "DEATH") {
+            speed = 7f;
             player.transform.localPosition = GameController.currentSpawnPoint;
         }
 
         if (collision.gameObject.tag == "PowerUp") {
+            StopCoroutine("MoreSpeed");
             speed = 11f;
             StartCoroutine("MoreSpeed");
         }
@@ -122,7 +128,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     IEnumerator MoreSpeed() {
-        // cant press anything
         yield return new WaitForSeconds(4f); //wait 
         speed = 7f;
     }

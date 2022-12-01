@@ -32,9 +32,17 @@ public class MenuController : MonoBehaviour {
 
     private bool cooldown = false;
 
+    GameObject ambientSound;
+    GameObject okSound;
+    GameObject changeSound;
+
     // Start is called before the first frame update
     void Start()
     {
+        GameObject ambientSound = GameObject.Find("AmbientSound");
+        GameObject okSound = GameObject.Find("OkSound");
+        GameObject changeSound = GameObject.Find("ChangeSound");
+
         initialHUDArrowPos = hudArrowIcon.transform.localPosition;
         limitHUDArrowPos = new Vector3(hudArrowIcon.transform.localPosition.x - 10f, hudArrowIcon.transform.localPosition.y, hudArrowIcon.transform.localPosition.z);
 
@@ -44,13 +52,8 @@ public class MenuController : MonoBehaviour {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        GameObject ambientSound = GameObject.Find("AmbientSound");
         DontDestroyOnLoad(ambientSound);
-
-        GameObject okSound = GameObject.Find("OkSound");
         DontDestroyOnLoad(okSound);
-
-        GameObject changeSound = GameObject.Find("ChangeSound");
         DontDestroyOnLoad(changeSound);
 
         selectedLang = languagueArrays[currentLangIteration];

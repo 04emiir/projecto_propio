@@ -16,7 +16,7 @@ public class PowerUpController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "Player") {
             this.gameObject.SetActive(false);
-            Invoke("ReEnablePower", 4f);
+            Invoke("ReEnablePower", 5f);
         }
     }
 
