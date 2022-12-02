@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug.DrawRay(transform.position, Vector2.down*2, Color.green);
+        //Debug.DrawRay(transform.position, Vector2.down*1, Color.green);
         IsGrounded();
         // Horizontal movement
         if (!disable_inputs) {

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class IntroController : MonoBehaviour
 {
+    public AudioSource soundEffect;
     public TextMeshProUGUI introText;
     // Start is called before the first frame update
     void Start()
@@ -17,13 +18,14 @@ public class IntroController : MonoBehaviour
     void Update()
     {
         if (introText.color.a != 1f)
-            introText.color = new Color(1f, 1f, 1f, introText.color.a + (0.1f * Time.deltaTime));
+            introText.color = new Color(1f, 1f, 1f, introText.color.a + (0.5f * Time.deltaTime));
         else
-            StartCoroutine("laodGame");
+            soundEffect.Play();
+            StartCoroutine("loadGame");
     }
 
     IEnumerator loadGame() { 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("MenuScene");
     }
 
