@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour{
     private GameObject quitParent;
     private GameObject resumeParent;
     private string selectedPause;
+    [HideInInspector] public static bool isPaused = false;
+    private GameObject BgMusic;
 
     private string[] engText = { "SELECT / ACTION", "GO BACK / CANCEL", "MENU\nCONTROL", "PLAYER\nCONTROL", "RESUME", "QUIT" };
     private string[] espText = { "SELECCION / ACCION", "ATRAS / CANCELAR", "CONTROL MENU", "CONTROL JUGADOR", "REANUDAR", "SALIR" };
@@ -24,6 +26,7 @@ public class GameController : MonoBehaviour{
     void Start() {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        BgMusic = GameObject.Find("BgMusic");
         selectedPause = "resume";
         fullLanguages.Add("esp", espText);
         fullLanguages.Add("eng", engText);
@@ -54,6 +57,7 @@ public class GameController : MonoBehaviour{
                 PauseGame();
             } else {
                 PauseGame();
+                Destroy(BgMusic);
                 SceneManager.LoadScene("MenuScene");
             }
         }
@@ -63,9 +67,12 @@ public class GameController : MonoBehaviour{
 
     public void PauseGame() {
         if (canvas.activeSelf) {
+            isPaused = !isPaused;
             canvas.SetActive(false);
             Time.timeScale = 1;
+            
         } else {
+            isPaused = !isPaused;
             canvas.SetActive(true);
             var cont = 0;
             foreach (var singleText in textControls) {

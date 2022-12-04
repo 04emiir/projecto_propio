@@ -16,13 +16,13 @@ public class IntroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (introText.color.a != 1f)
-            introText.color = new Color(1f, 1f, 1f, introText.color.a + (0.1f * Time.deltaTime));
+        if (introText.color.a <= 0.9f)
+            introText.color = new Color(1f, 1f, 1f, introText.color.a + (0.5f * Time.deltaTime));
         else
-            StartCoroutine("laodGame");
+            StartCoroutine("LoadGame");
     }
 
-    IEnumerator loadGame() { 
+    IEnumerator LoadGame() { 
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("MenuScene");
     }

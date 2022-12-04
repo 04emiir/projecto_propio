@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    private GameObject BgMusic;
     public LayerMask ground;
     Animator animation_player;
     public Rigidbody2D player;
@@ -35,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         // Debug.DrawRay(transform.position, Vector2.down*2, Color.green);
         IsGrounded();
         // Horizontal movement
-        if (!disable_inputs) {
+        if (!disable_inputs && GameController.isPaused == false) {
             direction = Input.GetAxisRaw("Horizontal");
             PlayerMoving();
             //Jumping
@@ -101,6 +103,8 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene("GameSceneLevThree");
         }
         if (collision.gameObject.tag == "EndGameModule" && Input.GetKey(KeyCode.J)) {
+            BgMusic = GameObject.Find("BgMusic");
+            Destroy(BgMusic);
             SceneManager.LoadScene("CreditsScene");
         }
     }

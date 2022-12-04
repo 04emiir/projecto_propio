@@ -16,7 +16,6 @@ public class PlayMusic : MonoBehaviour
         DontDestroyOnLoad(bgMusic);
         Destroy(ambientSound);
         Destroy(okSound);
-        Destroy(ambientSound);
     }
 
     // Update is called once per frame
